@@ -37,7 +37,7 @@ jobs:
       - name: Docker push
         run: |
           docker tag movie-box-backend:latest 638775532340.dkr.ecr.us-east-1.amazonaws.com/movie-box-backend:${GITHUB_RUN_NUMBER}
-          docker push 638775532340.dkr.ecr.us-east-1.amazonaws.com/movie-box-backend:latest   
+          docker push 638775532340.dkr.ecr.us-east-1.amazonaws.com/movie-box-backend:${GITHUB_RUN_NUMBER}
         # docker tag movie-box-backend:latest ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:latest
 
 # # sequential/serial build and push jobs
