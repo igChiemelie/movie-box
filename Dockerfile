@@ -10,6 +10,7 @@ RUN apt-get install -y maven
 WORKDIR /app
 
 # copy the files to the working directory
+COPY .env /app/src/main/resources/.env
 COPY ./src /app/src
 COPY ./pom.xml /app
 
