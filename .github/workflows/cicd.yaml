@@ -18,7 +18,7 @@ jobs:
           echo "{{ vars.ENV_FILE }}" > .env
           ls -la 
           cat .env
-          docker build -t netflix_backend:latest .
+#          docker build -t netflix_backend:latest .
 
 # # sequential/serial build and push jobs
 #   build-and-push2:

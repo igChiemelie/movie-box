@@ -16,8 +16,8 @@ COPY ./pom.xml /app
 
 # Build the application using Maven
 RUN mvn -f pom.xml clean package -DskipTests
-RUN ls -la /app
-RUN ls -la /app/target
+# RUN ls -la /app
+# RUN ls -la /app/target
 
 # Copy the built JAR file to the target directory
 # COPY ./target/*.jar /app/app.jar
