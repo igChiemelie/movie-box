@@ -15,9 +15,11 @@ COPY ./pom.xml /app
 
 # Build the application using Maven
 RUN mvn -f pom.xml clean package -DskipTests
+RUN ls -la /app
+RUN ls -la /app/target
 
 # Copy the built JAR file to the target directory
-COPY ./target/*.jar /app/app.jar
+# COPY ./target/*.jar /app/app.jar
 
 # Expose the application port and set the entry point
 EXPOSE 8080
