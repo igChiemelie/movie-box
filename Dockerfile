@@ -12,7 +12,9 @@ RUN apt-get update && apt-get install -y openjdk-17-jre-headless maven
 WORKDIR /app
 
 # copy the files to the working directory
+
 COPY .env /app/src/main/resources/.env
+COPY application.properties /app/src/main/resources/application.properties
 COPY ./src /app/src
 COPY ./pom.xml /app
 
@@ -22,9 +24,9 @@ RUN mvn -f pom.xml clean package -DskipTests
 # RUN ls -la /app/target
 
 # Copy the built JAR file to the target directory
-# COPY ./target/*.jar /app/app.jar
-RUN cp /app/target/movieist-0.0.1-SNAPSHOT.jar /app/app.jar
+RUN cp /app/target/*.jar /app/app.jar
+# RUN cp /app/target/movieist-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the application port and set the entry point
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
