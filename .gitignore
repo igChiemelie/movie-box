@@ -35,5 +35,6 @@ build/
 ### Environment ###
 # .env
 ./src/main/resources/.env
+./src/main/resources/.application.properties
 
 .gitignore

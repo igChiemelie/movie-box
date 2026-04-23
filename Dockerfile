@@ -13,9 +13,8 @@ WORKDIR /app
 
 # copy the files to the working directory
 
-COPY .env /app/src/main/resources/.env
+# COPY .env /app/src/main/resources/.env
 COPY application.properties /app/src/main/resources/application.properties
-# COPY ./src/main/resources/application.properties /app/src/main/resources/application.properties
 COPY ./src /app/src
 COPY ./pom.xml /app
 
