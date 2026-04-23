@@ -2,9 +2,11 @@ FROM ubuntu
 
 # Install necessary packages
 #===============================
-RUN apt-get update && apt-get install -y
-RUN apt install openjdk-17-jre-headless -y
-RUN apt-get install -y maven
+# RUN apt-get update && apt-get install -y
+# RUN apt install openjdk-17-jre-headless -y
+# RUN apt-get install -y maven
+RUN apt-get update && apt-get install -y openjdk-17-jre-headless maven
+
 
 # Set the working directory and copy the application files
 WORKDIR /app
@@ -21,7 +23,8 @@ RUN mvn -f pom.xml clean package -DskipTests
 
 # Copy the built JAR file to the target directory
 # COPY ./target/*.jar /app/app.jar
+RUN cp /app/target/movieist-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # Expose the application port and set the entry point
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
