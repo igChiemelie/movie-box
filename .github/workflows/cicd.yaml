@@ -10,4 +10,59 @@ jobs:
   build-and-push1:
     runs-on: ubuntu-latest
 
-    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      # Login to Amazon ECR
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+        # Build and push Docker image to Amazon ECR
+        # echo "vars.ENV_FILE" > .env
+      - name: Docker Build
+        run: |
+          echo "${{ vars.APPLICATION_PROPERTIES }}" > application.properties
+          ls -la 
+          cat application.properties
+          docker build -t movie-box-backend:latest .
+
+      - name: Docker push
+        run: |
+          docker tag movie-box-backend:latest 638775532340.dkr.ecr.us-east-1.amazonaws.com/movie-box-backend:${GITHUB_RUN_NUMBER}
+          docker push 638775532340.dkr.ecr.us-east-1.amazonaws.com/movie-box-backend:${GITHUB_RUN_NUMBER}
+        # docker tag movie-box-backend:latest ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY }}:latest
+
+# # sequential/serial build and push jobs
+#   build-and-push2:
+#     runs-on: ubuntu-latest
+#     needs: build-and-push1
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Docker Build2
+#         run: |
+#           hostnamectl
+
+# # sequential/serial build and push jobs
+#   build-and-push3:
+#     runs-on: ubuntu-latest
+#     needs: build-and-push2
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v2
+
+#       - name: Docker Build3
+#         run: |
+#           hostnamectl
