@@ -8,8 +8,12 @@ on:
 # Define the jobs to be run
 jobs:
 # sequential/serial build and push jobs
-  build-and-push2:
+  build-and-push:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Checkout code
