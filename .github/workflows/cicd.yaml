@@ -30,7 +30,7 @@ jobs:
         # echo "vars.ENV_FILE" > .env
       - name: Docker Build
         run: |
-          echo "${{ vars.SPRING_DATA_MONGODB_URI }}" > application.properties
+          echo "spring.data.mongodb.uri=${{ vars.SPRING_DATA_MONGODB_URI }}" > application.properties
           ls -la 
           cat .env
           docker build -t movie-box-backend:latest .
