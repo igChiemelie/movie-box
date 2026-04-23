@@ -26,10 +26,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      # Build and push Docker image to Amazon ECR
+        # Build and push Docker image to Amazon ECR
+        # echo "vars.ENV_FILE" > .env
       - name: Docker Build
         run: |
-          echo "${{ vars.ENV_FILE }}" > .env
+          echo "${{ vars.SPRING_DATA_MONGODB_URI }}" > application.properties
           ls -la 
           cat .env
           docker build -t movie-box-backend:latest .
