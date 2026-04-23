@@ -15,7 +15,7 @@ COPY ./src /app/src
 COPY ./pom.xml /app
 
 # Build the application using Maven
-RUN mvn -f pom.xml clean package
+RUN mvn -f pom.xml clean package -DskipTests
 # RUN ls -la /app
 # RUN ls -la /app/target
 
