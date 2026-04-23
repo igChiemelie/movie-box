@@ -1,0 +1,20 @@
+name: Build and push Docker image
+
+# Define the trigger for the workflow
+on:
+  push:
+    branches: [master]
+
+# Define the jobs to be run
+jobs:
+# sequential/serial build and push jobs
+  build-and-push2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Docker Build2
+        run: |
+          hostnamectl
